@@ -45,8 +45,9 @@
     // Simulate a touch with the scale animation
     [self _beginHoldAnimation];
     _scaledDown = YES;
-    
-    [_delegate draggableViewHold:self];
+
+    if ([_delegate respondsToSelector:@selector(draggableViewHold:)])
+        [_delegate draggableViewHold:self];
 }
 
 - (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event
@@ -63,7 +64,9 @@
     _scaledDown = NO;
     _moved = YES;
     
-    [_delegate draggableView:self didMoveToPoint:movedPoint];
+    
+    if ([_delegate respondsToSelector:@selector(draggableView:didMoveToPoint:)])
+        [_delegate draggableView:self didMoveToPoint:movedPoint];
 }
 
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
@@ -84,9 +87,11 @@
         [self _beginReleaseAnimation];
     }
     if (!_moved) {
-        [_delegate draggableViewTouched:self];
+        if ([_delegate respondsToSelector:@selector(draggableViewTouched:)])
+            [_delegate draggableViewTouched:self];
     } else {
-        [_delegate draggableViewReleased:self];
+        if ([_delegate respondsToSelector:@selector(draggableViewReleased:)])
+            [_delegate draggableViewReleased:self];
     }
     
     _moved = NO;
@@ -160,7 +165,9 @@
 - (void)layoutSubviews
 {
     [super layoutSubviews];
-    [_delegate draggableViewNeedsAlignment:self];
+    
+    if ([_delegate respondsToSelector:@selector(draggableViewNeedsAlignment:)])
+        [_delegate draggableViewNeedsAlignment:self];
 }
 
 @end

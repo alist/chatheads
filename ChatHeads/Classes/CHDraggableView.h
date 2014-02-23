@@ -19,6 +19,7 @@
 
 @protocol CHDraggableViewDelegate <NSObject>
 
+@optional
 - (void)draggableViewHold:(CHDraggableView *)view;
 - (void)draggableView:(CHDraggableView *)view didMoveToPoint:(CGPoint)point;
 - (void)draggableViewReleased:(CHDraggableView *)view;

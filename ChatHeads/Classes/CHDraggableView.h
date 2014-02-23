@@ -22,6 +22,10 @@
 @optional
 - (void)draggableViewHold:(CHDraggableView *)view;
 - (void)draggableView:(CHDraggableView *)view didMoveToPoint:(CGPoint)point;
+
+//SUPER optional -- if this is defined, CHDraggableView will NOT drag itself about
+- (void)handleTouchMove:(UITouch*)touch forDraggableView:(CHDraggableView *)view;
+
 - (void)draggableViewReleased:(CHDraggableView *)view;
 
 - (void)draggableViewTouched:(CHDraggableView *)view;

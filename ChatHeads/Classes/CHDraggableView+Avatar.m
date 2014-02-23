@@ -15,8 +15,10 @@
 + (id)draggableViewWithImage:(UIImage *)image
 {
     CHDraggableView *view = [[CHDraggableView alloc] initWithFrame:CGRectMake(0, 0, 66, 66)];
+    [view setAutoresizesSubviews:TRUE];
     
     CHAvatarView *avatarView = [[CHAvatarView alloc] initWithFrame:CGRectInset(view.bounds, 4, 4)];
+    [avatarView setAutoresizingMask:UIViewAutoresizingFlexibleHeight|UIViewAutoresizingFlexibleWidth];
     avatarView.backgroundColor = [UIColor clearColor];
     [avatarView setImage:image];
     avatarView.center = CGPointMake(CGRectGetMidX(view.bounds), CGRectGetMidY(view.bounds));

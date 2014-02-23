@@ -55,18 +55,25 @@
     UITouch *touch = [touches anyObject];
     CGPoint movedPoint = [touch locationInView:self];
     
-    CGFloat deltaX = movedPoint.x - _startTouchPoint.x;
-    CGFloat deltaY = movedPoint.y - _startTouchPoint.y;
-    [self _moveByDeltaX:deltaX deltaY:deltaY];
     if (_scaledDown) {
         [self _beginReleaseAnimation];
     }
     _scaledDown = NO;
     _moved = YES;
+
+    //I don't like how it moves itself. Let's have the VC move it instead
     
+    if ([_delegate respondsToSelector:@selector(handleTouchMove:forDraggableView:)]){
+        [_delegate handleTouchMove:touch forDraggableView:self];
+    }else{
+        CGFloat deltaX = movedPoint.x - _startTouchPoint.x;
+        CGFloat deltaY = movedPoint.y - _startTouchPoint.y;
+        [self _moveByDeltaX:deltaX deltaY:deltaY];
+
+        if ([_delegate respondsToSelector:@selector(draggableView:didMoveToPoint:)])
+            [_delegate draggableView:self didMoveToPoint:movedPoint];
+    }
     
-    if ([_delegate respondsToSelector:@selector(draggableView:didMoveToPoint:)])
-        [_delegate draggableView:self didMoveToPoint:movedPoint];
 }
 
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event

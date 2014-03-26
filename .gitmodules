@@ -3,4 +3,4 @@
 	url = git://github.com/khanlou/SKBounceAnimation.git
 [submodule "ChatHeads/Externals/CAAnimationBlocks"]
 	path = ChatHeads/Externals/CAAnimationBlocks
-	url = git://github.com/xissburg/CAAnimationBlocks.git
+	url = git://github.com/alist/CAAnimationBlocks.git

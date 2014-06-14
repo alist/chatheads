@@ -11,5 +11,5 @@
 @interface CHDraggableView (Avatar)
 
 + (id)draggableViewWithImage:(UIImage *)image;
-
++ (id)draggableViewWithImage:(UIImage *)image size:(CGSize)size;
 @end

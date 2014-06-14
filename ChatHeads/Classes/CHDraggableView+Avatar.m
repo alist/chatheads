@@ -12,9 +12,14 @@
 
 @implementation CHDraggableView (Avatar)
 
-+ (id)draggableViewWithImage:(UIImage *)image
++ (id)draggableViewWithImage:(UIImage *)image {
+    return [self draggableViewWithImage:image size:CGSizeMake(66, 66)];
+}
+
+
++ (id)draggableViewWithImage:(UIImage *)image size:(CGSize)size
 {
-    CHDraggableView *view = [[CHDraggableView alloc] initWithFrame:CGRectMake(0, 0, 66, 66)];
+    CHDraggableView *view = [[CHDraggableView alloc] initWithFrame:CGRectMake(0, 0, size.width, size.height)];
     [view setAutoresizesSubviews:TRUE];
     
     CHAvatarView *avatarView = [[CHAvatarView alloc] initWithFrame:CGRectInset(view.bounds, 4, 4)];
@@ -26,5 +31,6 @@
     
     return view;
 }
+
 
 @end
